@@ -79,6 +79,7 @@ class MathSettings():
         self.MATH_DISP = MATH_DISP
 
 class HorizSettings():
+    # from 2ns to 40s mapping
     sec_divs_float = [i*1e-9 for i in [2,4,8]]+ \
                     [i*1e-8 for i in [2,4,8]]+ \
                     [i*1e-7 for i in [2,4,8]]+ \
@@ -94,6 +95,7 @@ class HorizSettings():
                      "20us", "40us", "80us", "200us", "400us", "800us","2ms", "4ms", "8ms",
                      "20ms", "40ms", "80ms", "200ms", "400ms", "800ms","2s", "4s", "8s","20s", "40s"
                     ]
+                    
     def __init__(self, HORIZ_TB, HORIZ_WIN_TB, HORIZ_WIN_STATE, HORIZ_TRIGTIME):
         self.HORIZ_TB = HORIZ_TB
         self.HORIZ_WIN_TB = HORIZ_WIN_TB
@@ -240,8 +242,6 @@ class ChannelSettings():
 # #MEASURE 189:204
 # #CONTROL 205:207
 class Settings():
-    ch1 = None
-    ch2 = None
     def __init__(self,ar_bytes) -> None:
         from_ = 0
         to = 10
@@ -253,7 +253,6 @@ class Settings():
 
         from_=to 
         to = from_+140
-        #print(ar_bytes,ar_bytes[from_:to])
         
         self.trigger =self.read_trig_settings(ar_bytes[from_:to])
 
@@ -309,7 +308,8 @@ class Settings():
         return self.measure
     
     
-    ###########################################
+    ###########PROTOCOL WISE EXTRACTION FROM PACKET################################
+
     def read_ch_settings(self, ar_bytes ):
         settings = unpack(f'<{"B"*8}h', ar_bytes)
         return ChannelSettings(*settings)
@@ -319,32 +319,26 @@ class Settings():
             f'<{"B"*5}h{"Q"*4}{"B"*4}hBBQBBBhhQ{"B"*7}h{"B"*6}hhQ{"B"*7}hBBQBBBhhQBQ', ar_bytes)
         return TriggerSettings(*settings)
     
-    #k
     def read_horiz_settings(self, ar_bytes ):
         settings = unpack('<BBBq', ar_bytes)
         return HorizSettings(*settings)
     
-    #k
     def read_math_settings(self, ar_bytes ):
         settings = unpack(f'<{"B"*6}', ar_bytes)
         return MathSettings(*settings)
     
-    #k
     def read_display_settings(self, ar_bytes ):
         settings = unpack(f'<{"B"*8}', ar_bytes)
         return DisplaySettings(*settings)
     
-    #k
     def read_acquire_settings(self, ar_bytes ):
         settings = unpack(f'<{"B"*4}', ar_bytes)
         return AcquireSettings(*settings)
 
-    #k
     def read_measure_settings(self, ar_bytes ):
         settings = unpack(f'<{"B"*16}', ar_bytes)
         return MeasureSettings(*settings)
     
-    #k
     def read_control_settings(self, ar_bytes ):
         settings = unpack(f'<{"B"*3}', ar_bytes)
         return ControlSettings(*settings)
