@@ -7,6 +7,9 @@ class TriggerSettings():
     source = ["CH1", "CH2", "Ext", "Ext/5", "AC50"]
 
     def __init__(self, TRIG_STATE, TRIG_TYPE, TRIG_SRC, TRIG_MODE, TRIG_COUP, TRIG_VPOS, TRIG_FREQUENCY, TRIG_HOLDTIME_MIN, TRIG_HOLDTIME_MAX, TRIG_HOLDTIME, TRIG_EDGE_SLOPE, TRIG_VIDEO_NEG, TRIG_VIDEO_PAL, TRIG_VIDEO_SYN, TRIG_VIDEO_LINE, TRIG_PULSE_NEG, TRIG_PULSE_WHEN, TRIG_PULSE_TIME, TRIG_SLOPE_SET, TRIG_SLOPE_WIN, TRIG_SLOPE_WHEN, TRIG_SLOPE_V1, TRIG_SLOPE_V2, TRIG_SLOPE_TIME, TRIG_SWAP_CH1_TYPE, TRIG_SWAP_CH1_MODE, TRIG_SWAP_CH1_COUP, TRIG_SWAP_CH1_EDGE_SLOPE, TRIG_SWAP_CH1_VIDEO_NEG, TRIG_SWAP_CH1_VIDEO_PAL, TRIG_SWAP_CH1_VIDEO_SYN, TRIG_SWAP_CH1_VIDEO_LINE, TRIG_SWAP_CH1_PULSE_NEG, TRIG_SWAP_CH1_PULSE_WHEN, TRIG_SWAP_CH1_PULSE_TIME, TRIG_SWAP_CH1_SLOPE_SET, TRIG_SWAP_CH1_SLOPE_WIN, TRIG_SWAP_CH1_SLOPE_WHEN, TRIG_SWAP_CH1_SLOPE_V1, TRIG_SWAP_CH1_SLOPE_V2, TRIG_SWAP_CH1_SLOPE_TIME, TRIG_SWAP_CH2_TYPE, TRIG_SWAP_CH2_MODE, TRIG_SWAP_CH2_COUP, TRIG_SWAP_CH2_EDGE_SLOPE, TRIG_SWAP_CH2_VIDEO_NEG, TRIG_SWAP_CH2_VIDEO_PAL, TRIG_SWAP_CH2_VIDEO_SYN, TRIG_SWAP_CH2_VIDEO_LINE, TRIG_SWAP_CH2_PULSE_NEG, TRIG_SWAP_CH2_PULSE_WHEN, TRIG_SWAP_CH2_PULSE_TIME, TRIG_SWAP_CH2_SLOPE_SET, TRIG_SWAP_CH2_SLOPE_WIN, TRIG_SWAP_CH2_SLOPE_WHEN, TRIG_SWAP_CH2_SLOPE_V1, TRIG_SWAP_CH2_SLOPE_V2, TRIG_SWAP_CH2_SLOPE_TIME, TRIG_OVERTIME_NEG, TRIG_OVERTIME_TIME):
+        ##### WARNING!!!! 
+        ##### the arguments assignment sequence must be respected according to the protocol.inf settings!!
+        ##### or it won't work when generating the packed setting to write them back to the scope.
         self.TRIG_STATE = TRIG_STATE
         self.TRIG_TYPE = TRIG_TYPE
         self.TRIG_SRC = TRIG_SRC
@@ -48,6 +51,7 @@ class TriggerSettings():
         self.TRIG_SWAP_CH1_SLOPE_V1 = TRIG_SWAP_CH1_SLOPE_V1
         self.TRIG_SWAP_CH1_SLOPE_V2 = TRIG_SWAP_CH1_SLOPE_V2
         self.TRIG_SWAP_CH1_SLOPE_TIME = TRIG_SWAP_CH1_SLOPE_TIME
+        self.TRIG_SWAP_CH2_TYPE = TRIG_SWAP_CH2_TYPE
         self.TRIG_SWAP_CH2_MODE = TRIG_SWAP_CH2_MODE
         self.TRIG_SWAP_CH2_COUP = TRIG_SWAP_CH2_COUP
         self.TRIG_SWAP_CH2_EDGE_SLOPE = TRIG_SWAP_CH2_EDGE_SLOPE
@@ -66,17 +70,19 @@ class TriggerSettings():
         self.TRIG_SWAP_CH2_SLOPE_TIME = TRIG_SWAP_CH2_SLOPE_TIME
         self.TRIG_OVERTIME_NEG = TRIG_OVERTIME_NEG
         self.TRIG_OVERTIME_TIME = TRIG_OVERTIME_TIME
-        self.TRIG_SWAP_CH2_TYPE = TRIG_SWAP_CH2_TYPE
     #status,type,src,mode,coupling_mode_idx,vert_pos,freq,hold_time_min,hold_time_max,hold_time,edge_slope_idx,video_polarity_idx,video_system_idx,video_sync_idx,video_trigger_line,pulse_polarity_idx,pulse_condition_idx,pulse_width,slope_set,slope_win,slope_cond,slope_v1_value,slope_v2_value,slope_time,alt_ch1_type_idx,ch1_mode,ch1_coupling_idx,ch1_video_polarity,)
 
 class MathSettings():
     def __init__(self,MATH_DISP, MATH_MODE, MATH_FFT_SRC, MATH_FFT_WIN, MATH_FFT_FACTOR, MATH_FFT_DB):
+        ##### WARNING!!!! 
+        ##### the arguments assignment sequence must be respected according to the protocol.inf settings!!
+        ##### or it won't work when generating the packed setting to write them back to the scope.        
+        self.MATH_DISP = MATH_DISP
         self.MATH_MODE = MATH_MODE
         self.MATH_FFT_SRC = MATH_FFT_SRC
         self.MATH_FFT_WIN = MATH_FFT_WIN
         self.MATH_FFT_FACTOR = MATH_FFT_FACTOR
         self.MATH_FFT_DB = MATH_FFT_DB
-        self.MATH_DISP = MATH_DISP
 
 class HorizSettings():
     # from 2ns to 40s mapping
@@ -95,8 +101,11 @@ class HorizSettings():
                      "20us", "40us", "80us", "200us", "400us", "800us","2ms", "4ms", "8ms",
                      "20ms", "40ms", "80ms", "200ms", "400ms", "800ms","2s", "4s", "8s","20s", "40s"
                     ]
-                    
+
     def __init__(self, HORIZ_TB, HORIZ_WIN_TB, HORIZ_WIN_STATE, HORIZ_TRIGTIME):
+        ##### WARNING!!!! 
+        ##### the arguments assignment sequence must be respected according to the protocol.inf settings!!
+        ##### or it won't work when generating the packed setting to write them back to the scope.
         self.HORIZ_TB = HORIZ_TB
         self.HORIZ_WIN_TB = HORIZ_WIN_TB
         self.HORIZ_WIN_STATE = HORIZ_WIN_STATE
@@ -116,6 +125,9 @@ class HorizSettings():
     
 class DisplaySettings():
     def __init__(self,DISPLAY_MODE, DISPLAY_PERSIST, DISPLAY_FORMAT, DISPLAY_CONTRAST, DISPLAY_MAXCONTRAST, DISPLAY_GRID_KIND, DISPLAY_GRID_BRIGHT, DISPLAY_MAXGRID_BRIGHT):
+        ##### WARNING!!!! 
+        ##### the arguments assignment sequence must be respected according to the protocol.inf settings!!
+        ##### or it won't work when generating the packed setting to write them back to the scope.
         self.DISPLAY_MODE = DISPLAY_MODE
         self.DISPLAY_PERSIST = DISPLAY_PERSIST
         self.DISPLAY_FORMAT = DISPLAY_FORMAT
@@ -127,6 +139,9 @@ class DisplaySettings():
 
 class AcquireSettings():
     def __init__(self, ACQURIE_MODE, ACQURIE_AVG_CNT, ACQURIE_TYPE, ACQURIE_STORE_DEPTH):
+        ##### WARNING!!!! 
+        ##### the arguments assignment sequence must be respected according to the protocol.inf settings!!
+        ##### or it won't work when generating the packed setting to write them back to the scope.
         self.ACQURIE_MODE = ACQURIE_MODE
         self.ACQURIE_AVG_CNT = ACQURIE_AVG_CNT
         self.ACQURIE_TYPE = ACQURIE_TYPE
@@ -134,6 +149,9 @@ class AcquireSettings():
 
 class MeasureSettings():
     def __init__(self, MEASURE_ITEM1_SRC, MEASURE_ITEM1, MEASURE_ITEM2_SRC, MEASURE_ITEM2, MEASURE_ITEM3_SRC, MEASURE_ITEM3, MEASURE_ITEM4_SRC, MEASURE_ITEM4, MEASURE_ITEM5_SRC, MEASURE_ITEM5, MEASURE_ITEM6_SRC, MEASURE_ITEM6, MEASURE_ITEM7_SRC, MEASURE_ITEM7, MEASURE_ITEM8_SRC, MEASURE_ITEM8):
+        ##### WARNING!!!! 
+        ##### the arguments assignment sequence must be respected according to the protocol.inf settings!!
+        ##### or it won't work when generating the packed setting to write them back to the scope.
         self.MEASURE_ITEM1_SRC = MEASURE_ITEM1_SRC
         self.MEASURE_ITEM1 = MEASURE_ITEM1
         self.MEASURE_ITEM2_SRC = MEASURE_ITEM2_SRC
@@ -153,6 +171,9 @@ class MeasureSettings():
 
 class ControlSettings():
     def __init__(self,CONTROL_TYPE, CONTROL_MENUID, CONTROL_DISP_MENU):
+        ##### WARNING!!!! 
+        ##### the arguments assignment sequence must be respected according to the protocol.inf settings!!
+        ##### or it won't work when generating the packed setting to write them back to the scope.
         self.CONTROL_TYPE = CONTROL_TYPE
         self.CONTROL_MENUID = CONTROL_MENUID
         self.CONTROL_DISP_MENU = CONTROL_DISP_MENU
@@ -169,6 +190,9 @@ class ChannelSettings():
     phase = ['normal','inverted'] ## Phase 
 
     def __init__(self,is_on,volt_div_idx,coupling_idx,filter_20Mh_On,volt_div_tuning_type,probe_type_idx,phase_idx,volt_div_fine,pos) -> None:
+        ##### WARNING!!!! 
+        ##### the arguments assignment sequence must be respected according to the protocol.inf settings!!
+        ##### or it won't work when generating the packed setting to write them back to the scope.
         self.is_on = is_on # 0x00 off, 0x01 on
 
         self.volt_div_idx = volt_div_idx #  see volt_div_arr_str and volt_div_arr_float vars
@@ -219,6 +243,7 @@ class ChannelSettings():
     def get_settings(self)-> str:
         return self.__str__();
 
+
     def __str__(self) -> str:
        return (f'is_on {self.is_on}\n\
         volts_div {self.get_volt_div_str()} {self.volt_div_idx}\n\
@@ -231,7 +256,18 @@ class ChannelSettings():
         Position {self.get_pos()}')
         
 
+### PACKED DATA According to protocol.inf
+CHAN_PACK = f'{"B"*8}h'
+TRIG_PACK = f'{"B"*5}h{"Q"*4}{"B"*4}hBBQBBBhhQ{"B"*7}h{"B"*6}hhQ{"B"*7}hBBQBBBhhQBQ'
+HORIZ_PACK = f'BBBq'
+MATH_PACK = f'{"B"*6}'
+DISPLAY_PACK = f'{"B"*8}'
+ACQUIRE_PACK = f'{"B"*4}'
+MEASURE_PACK = f'{"B"*16}'
+CONTROL_PACK = f'{"B"*3}'
+
 #################################
+#### INDEXES of Packed Data According to protocol.inf
 # #CH1 0:9
 # #CH2 10:19
 # #TRIG 20:159
@@ -243,6 +279,9 @@ class ChannelSettings():
 # #CONTROL 205:207
 class Settings():
     def __init__(self,ar_bytes) -> None:
+        
+        self.raw_settings = ar_bytes
+
         from_ = 0
         to = 10
         self.ch1 = self.read_ch_settings(ar_bytes[from_:to])
@@ -305,40 +344,58 @@ class Settings():
         return self.measure
 
     def get_control(self):
-        return self.measure
+        return self.control
     
-    
-    ###########PROTOCOL WISE EXTRACTION FROM PACKET################################
+    ### Creates the settings data according to the protocol.inf structure.
+    def get_packed_config(self):
+        return pack(f'<{CHAN_PACK}\
+             {CHAN_PACK}\
+             {TRIG_PACK}\
+             {HORIZ_PACK}\
+             {MATH_PACK}\
+             {DISPLAY_PACK}\
+             {ACQUIRE_PACK}\
+             {MEASURE_PACK}\
+             {CONTROL_PACK}', *self.get_channel1().__dict__.values(),
+             *self.get_channel2().__dict__.values(),
+             *self.get_trigger().__dict__.values(),
+             *self.get_horiz().__dict__.values(),
+             *self.get_math().__dict__.values(),
+             *self.get_display().__dict__.values(),
+             *self.get_acquire().__dict__.values(),
+             *self.get_measure().__dict__.values(),
+             *self.get_control().__dict__.values())
+        
 
+    ###########PROTOCOL WISE EXTRACTION FROM PACKET################################
     def read_ch_settings(self, ar_bytes ):
-        settings = unpack(f'<{"B"*8}h', ar_bytes)
+        settings = unpack(f'<{CHAN_PACK}', ar_bytes)
         return ChannelSettings(*settings)
     
     def read_trig_settings(self, ar_bytes ):
-        settings = unpack(
-            f'<{"B"*5}h{"Q"*4}{"B"*4}hBBQBBBhhQ{"B"*7}h{"B"*6}hhQ{"B"*7}hBBQBBBhhQBQ', ar_bytes)
+        settings = unpack(f'<{TRIG_PACK}', ar_bytes)
         return TriggerSettings(*settings)
     
     def read_horiz_settings(self, ar_bytes ):
-        settings = unpack('<BBBq', ar_bytes)
+        settings = unpack(f'<{HORIZ_PACK}', ar_bytes)
         return HorizSettings(*settings)
     
     def read_math_settings(self, ar_bytes ):
-        settings = unpack(f'<{"B"*6}', ar_bytes)
+        settings = unpack(f'<{MATH_PACK}', ar_bytes)
         return MathSettings(*settings)
     
     def read_display_settings(self, ar_bytes ):
-        settings = unpack(f'<{"B"*8}', ar_bytes)
+        settings = unpack(f'<{DISPLAY_PACK}', ar_bytes)
         return DisplaySettings(*settings)
     
     def read_acquire_settings(self, ar_bytes ):
-        settings = unpack(f'<{"B"*4}', ar_bytes)
+        settings = unpack(f'<{ACQUIRE_PACK}', ar_bytes)
         return AcquireSettings(*settings)
 
     def read_measure_settings(self, ar_bytes ):
-        settings = unpack(f'<{"B"*16}', ar_bytes)
+        settings = unpack(f'<{MEASURE_PACK}', ar_bytes)
         return MeasureSettings(*settings)
     
     def read_control_settings(self, ar_bytes ):
-        settings = unpack(f'<{"B"*3}', ar_bytes)
+        settings = unpack(f'<{CONTROL_PACK}', ar_bytes)
         return ControlSettings(*settings)
