@@ -120,6 +120,14 @@ class DasOszi():
         self.settings = Settings(r[4:-1])
         return self.settings
 
+    def WriteSettings( self):
+
+       # return array.array('B',self.settings.get_packed_config())
+        self._SendCommand( 'WriteSettings', 0x11, array.array('B',self.settings.get_packed_config()) )
+        r = self._ReadAnswer( 'WriteSettings', 0x91 )
+
+        return r[4:-1]
+
     
     def lock(self):
         return self.LockControlPanel( )
@@ -130,26 +138,28 @@ class DasOszi():
     # Locks control panel
     def LockControlPanel( self ):
         self._SendCommand( 'LockControlPanel', 0x12, array.array( 'B', [ 0x01, 0x01 ] ) )
-        r = self._ReadAnswer( 'LockControlPanel', 0x92 )
+        return self._ReadAnswer( 'LockControlPanel', 0x92 )
 
     # Unlocks control panel
     def UnLockControlPanel( self ):
         self._SendCommand( 'UnLockControlPanel', 0x12, array.array( 'B', [ 0x01, 0x00 ] ) )
-        r = self._ReadAnswer( 'UnLockControlPanel', 0x92 )
+        return self._ReadAnswer( 'UnLockControlPanel', 0x92 )
 
     def run(self):
-        return self.StartAcquire()
+        return self.StartAcquisition()
     
     def stop(self):
-        return self.StopAcquire()
+        return self.StopAcquisition()
     
-    def StartAcquire(self):
-        self._SendCommand( 'StartAcquire', 0x12, array.array( 'B', [0x00,0x00] ) )
-        r = self._ReadAnswer( 'StartAcquire', 0x92 )
+    # run 
+    def StartAcquisition( self ):
+        self._SendCommand( 'StartAcquisition', 0x12, array.array( 'B', [ 0x00, 0x00 ] ) )
+        return self._ReadAnswer( 'StartAcquisition', 0x92 )
 
-    def StopAcquire(self):
-        self._SendCommand( 'StartAcquire', 0x12, array.array( 'B', [0x00,0x01] ) )
-        r = self._ReadAnswer( 'StartAcquire', 0x92 )
+    # stop
+    def StopAcquisition( self ):
+        self._SendCommand( 'StopAcquisition', 0x12, array.array( 'B', [ 0x00, 0x01 ] ) )
+        return self._ReadAnswer( 'StopAcquisition', 0x92 )
 
 
     def ReadSampleData( self, channel ):
@@ -202,20 +212,10 @@ class DasOszi():
         r = ''.join( [ chr( c ) for c in r ] )
         return r
 
-    # run 
-    def StartAcquisition( self ):
-        self._SendCommand( 'StartAcquisition', 0x12, array.array( 'B', [ 0x00, 0x00 ] ) )
-        r = self._ReadAnswer( 'StartAcquisition', 0x92 )
-
-    # stop
-    def StopAcquisition( self ):
-        self._SendCommand( 'StopAcquisition', 0x12, array.array( 'B', [ 0x00, 0x01 ] ) )
-        r = self._ReadAnswer( 'StopAcquisition', 0x92 )
-
-    # NOT TESTED
+    # NOT TESTED 0x53 0x04 0x00 0x13
     def KeyTrigger( self, b1, b2 ):
         self._SendCommand( 'KeyTrigger', 0x13, array.array( 'B', [ b1, b2 ] ) )
-        r = self._ReadAnswer( 'KeyTrigger', 0x93 )
+        return self._ReadAnswer( 'KeyTrigger', 0x93 )
 
     # NOT TESTED
     def Screenshot( self ):
