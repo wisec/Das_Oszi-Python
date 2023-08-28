@@ -14,7 +14,8 @@ if(False):
 #readline.parse_and_bind('tab: complete')
 #readline.parse_and_bind('set editing-mode vi')
 else:
- dso = DasOszi(  0x049f, 0x505a,debug=False)
+ dso = DasOszi(  0x049f, 0x505a,debug=True)
  r=dso.ReadSettings()
- IPython.embed()
- print(r.horiz.__dict__)
+
+IPython.embed()
+print(r.horiz.__dict__)
