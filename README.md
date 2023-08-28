@@ -31,3 +31,7 @@ and reload udev rules with
 # Other similar projects
 
 * https://github.com/ArrestedLightning/PyOszi
+
+# Author
+Stefano `Wisec` Di Paola
+https://github.com/wisec
